@@ -52,7 +52,7 @@ public class Lobby implements Serializable {
 	public String and = " and ";
 	public boolean wrongInput = false;
 	List<Player> listOfPlayers = new ArrayList<Player>(); // The list, which holds the objects Player
-	int scoreToWin = 4; // The score, that a player has to reach to win
+	int scoreToWin = 1; // The score, that a player has to reach to win
 	public char roll = 'r';
 	public boolean YOUHAVEWON = false;
 	public boolean noElseHasMax = false;
@@ -326,6 +326,7 @@ public class Lobby implements Serializable {
 			objectOutputStream2.writeUTF("The game has ended");
 			objectOutputStream3.writeUTF("The game has ended");
 			objectOutputStream4.writeUTF("The game has ended");
+//			YOUHAVEWON = false;
 		}
 
 		public void rollTheDice() throws IOException, InterruptedException {
@@ -456,6 +457,7 @@ public class Lobby implements Serializable {
 
 					if (listOfPlayers.get(i).getTotalScore() == scoreToWin) {
 						YOUHAVEWON = true;
+						break;
 					} else {
 						YOUHAVEWON = false;
 					}
