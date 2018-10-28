@@ -21,7 +21,7 @@ import main.MainServer;
  * The Class Lobby.
  */
 public class Lobby extends VariableClass implements Serializable {
-
+	private static final long serialVersionUID = -21654L;
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		Lobby s = new Lobby();
@@ -30,36 +30,42 @@ public class Lobby extends VariableClass implements Serializable {
 
 	public void runServer() throws IOException, ClassNotFoundException {
 		registerServer();
+		
 		new Thread(() -> {
 			try {
 				ServerSocket serverSocket = new ServerSocket(PORT);
 				System.out.println("Server waiting for connections...");
+				
 				while (morePlayersCanJoin) {
+					
+					// Player 1 
 					clientNumber++;
-
 					player1 = new Player(clientNumber);
 					listOfPlayers.add(player1);// Adding the new player to the list listOfPlayers
 					Socket socket1 = serverSocket.accept();
 					DataOutputStream objectOutputStream = new DataOutputStream(socket1.getOutputStream());
 					objectOutputStream.writeInt(MAX_USERS - clientNumber);
-
 					System.out.println("User " + clientNumber + " is now connected");
+					
+					// Player 2
 					clientNumber++;
 					player2 = new Player(clientNumber);
 					listOfPlayers.add(player2);// Adding the new player to the list listOfPlayers
 					Socket socket2 = serverSocket.accept();
 					DataOutputStream objectOutputStream1 = new DataOutputStream(socket2.getOutputStream());
 					objectOutputStream1.writeInt(MAX_USERS - clientNumber);
-
 					System.out.println("User " + clientNumber + " is now connected");
+					
+					// Player 3
 					clientNumber++;
 					player3 = new Player(clientNumber);
 					listOfPlayers.add(player3);// Adding the new player to the list listOfPlayers
 					Socket socket3 = serverSocket.accept();
 					DataOutputStream objectOutputStream2 = new DataOutputStream(socket3.getOutputStream());
 					objectOutputStream2.writeInt(MAX_USERS - clientNumber);
-
 					System.out.println("User " + clientNumber + " is now connected");
+					
+					// Player 4
 					clientNumber++;
 					player4 = new Player(clientNumber);
 					listOfPlayers.add(player4);// Adding the new player to the list listOfPlayers
@@ -68,24 +74,15 @@ public class Lobby extends VariableClass implements Serializable {
 					System.out.println("User " + clientNumber + " is now connected");
 					objectOutputStream3.writeInt(MAX_USERS - clientNumber);
 
-					if (clientNumber >= 4) {
+					if (clientNumber >= MAX_USERS) {
 						System.out.println("Limit Reached");
 						morePlayersCanJoin = false;
 					}
 
-					switch (clientNumber) {
-					case 2:
-						new Thread(new ServerThread(socket1, socket2)).start();
-						break;
-					case 3:
-						new Thread(new ServerThread(socket1, socket2, socket3)).start();
-						break;
-					case 4:
-						new Thread(new ServerThread(socket1, socket2, socket3, socket4)).start();
-						break;
-					default:
-						break;
-					}
+
+				// Start a thread with the connected clients
+				new Thread(new ServerThread(socket1, socket2, socket3, socket4)).start();
+
 
 				}
 			} catch (IOException ex) {
@@ -111,21 +108,6 @@ public class Lobby extends VariableClass implements Serializable {
 		public Socket socket2;
 		public Socket socket3;
 		public Socket socket4;
-
-		ServerThread(Socket socket) {
-			this.socket1 = socket;
-		}
-
-		ServerThread(Socket socket, Socket socket2) {
-			this.socket1 = socket;
-			this.socket2 = socket2;
-		}
-
-		ServerThread(Socket socket1, Socket socket2, Socket socket3) {
-			this.socket1 = socket1;
-			this.socket2 = socket2;
-			this.socket3 = socket3;
-		}
 
 		ServerThread(Socket socket1, Socket socket2, Socket socket3, Socket socket4) {
 			this.socket1 = socket1;
@@ -234,6 +216,7 @@ public class Lobby extends VariableClass implements Serializable {
 						allPlayersReady = checkIfAllPlayersReady();
 					}
 				}
+				
 				// Send a boolean to the client so that they stay inside a Game while loop
 				streamToPlayer1.writeBoolean(true);
 				streamToPlayer2.writeBoolean(true);
@@ -262,7 +245,6 @@ public class Lobby extends VariableClass implements Serializable {
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

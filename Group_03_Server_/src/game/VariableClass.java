@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class VariableClass {
 // -------------- VARIABLES FOR LOBBY CLASS ----------------
-	private static final long serialVersionUID = -21654L;
 	public static final int PORT = 4445;
 	public static final int MAX_USERS = 4;
 	public static final String HOST = "localhost";
