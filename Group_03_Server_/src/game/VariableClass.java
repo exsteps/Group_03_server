@@ -39,14 +39,14 @@ public class VariableClass {
 	public String and = " and ";
 	public boolean wrongInput = false;
 	List<Player> listOfPlayers = new ArrayList<Player>(); // The list, which holds the objects Player
-	int scoreToWin = 4; // The score, that a player has to reach to win
+	int scoreToWin = 2; // The score, that a player has to reach to win
 	public char roll = 'r';
 	public boolean YOUHAVEWON = false;
 	public boolean noElseHasMax = false;
 	public boolean ifLastPlayerHasMax = false;
 	public static String winningPlayer;
-	public String gameHasEnded = "The game has ended. ";
-	public String pressToRollDice = "Press 'r' to roll the dice. The dice will be rolled when all players have pressed 'r'.";
+	public String gameHasEnded = "\nThe game has ended.\n";
+	public String pressToRollDice = "\nPress 'r' to roll the dice.\n\nThe dice will be rolled when all players have pressed 'r'.\nFirst player to 4 wins, the highest dice value is 8\n_______________________________________________________";
 
 // --------------------- VARIABLES FOR CLIENT CLASS ------------	
 	

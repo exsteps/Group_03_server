@@ -401,7 +401,7 @@ public class Lobby extends VariableClass implements Serializable {
 						YOUHAVEWON = true; // this boolean becomes true
 						
 						// The name of the winning player + info that he has won the game is assigned to this String variable
-						winningPlayer = listOfPlayers.get(i).getName() + " won the game";
+						winningPlayer = listOfPlayers.get(i).getName() + " won the game!!!!!!!";
 					break;
 						// if no one has won, this bool stays false
 					} else {
