@@ -30,11 +30,6 @@ public class BoardGameClient implements Serializable {
 
 		BoardGameClient c = new BoardGameClient();
 
-		//if (args.length > 0) {
-
-			//c.name = args[0];
-		// }
-
 		try {
 
 			c.joinServer();
