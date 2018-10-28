@@ -362,10 +362,10 @@ public class Lobby extends VariableClass implements Serializable {
 								streamToPlayer4.writeBoolean(noElseHasMax = true);
 								
 								// Info sent to user who rolled the highest value and that user gets a point
-								streamToPlayer1.writeUTF((i + 1) + rolledTheHighestValue);
-								streamToPlayer2.writeUTF((i + 1) + rolledTheHighestValue);
-								streamToPlayer3.writeUTF((i + 1) + rolledTheHighestValue);
-								streamToPlayer4.writeUTF((i + 1) + rolledTheHighestValue);
+								streamToPlayer1.writeUTF(listOfPlayers.get((i)).getName() + rolledTheHighestValue);
+								streamToPlayer2.writeUTF(listOfPlayers.get((i)).getName()  + rolledTheHighestValue);
+								streamToPlayer3.writeUTF(listOfPlayers.get((i)).getName() + rolledTheHighestValue);
+								streamToPlayer4.writeUTF(listOfPlayers.get((i)).getName()  + rolledTheHighestValue);
 
 								break outerloop;
 							}
@@ -406,10 +406,10 @@ public class Lobby extends VariableClass implements Serializable {
 							listOfPlayers.get(i).addScore();
 							
 							// Info sent to user who rolled the highest value and that user gets a point
-							streamToPlayer1.writeUTF((i + 1) + rolledTheHighestValue);
-							streamToPlayer2.writeUTF((i + 1) + rolledTheHighestValue);
-							streamToPlayer3.writeUTF((i + 1) + rolledTheHighestValue);
-							streamToPlayer4.writeUTF((i + 1) + rolledTheHighestValue);
+							streamToPlayer1.writeUTF(listOfPlayers.get((i)).getName() + rolledTheHighestValue);
+							streamToPlayer2.writeUTF(listOfPlayers.get((i)).getName() + rolledTheHighestValue);
+							streamToPlayer3.writeUTF(listOfPlayers.get((i)).getName() + rolledTheHighestValue);
+							streamToPlayer4.writeUTF(listOfPlayers.get((i)).getName() + rolledTheHighestValue);
 
 							break outerloop;
 						} else {
