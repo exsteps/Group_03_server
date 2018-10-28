@@ -18,7 +18,6 @@ public class VariableClass {
 	public int clientNumber = 0;
 	public int playerNumberReady = 0;
 	public boolean allPlayersReady = false;
-	public boolean OddurIsNice = false;
 	public String joinedServer = "Game Session started!";
 	public String waiting = "Waiting...";
 	public String letsGo = "LETS GO";
