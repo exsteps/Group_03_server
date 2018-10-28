@@ -212,52 +212,28 @@ public class Lobby extends VariableClass implements Serializable {
 				
 // 		THIS SECTIONS CHECKS IF THE CORRECT INPUT IS RECEIVED
 				
-				if (streamFromPlayer1.readInt() == 1) {
-					playerNumberReady++;
-					// This function checks if all players are ready
-					allPlayersReady = checkIfAllPlayersReady();
-					if (allPlayersReady == false) { // if it returns false it sends out a 'waiting' message
-						streamToPlayer1.writeUTF(waiting); 
+				while(allPlayersReady != true) {
+					if (streamFromPlayer1.readInt() == 1) {
+						playerNumberReady++;
+						// This function checks if all players are ready
+						allPlayersReady = checkIfAllPlayersReady();
+					}
+
+					if (streamFromPlayer2.readInt() == 1) {
+						playerNumberReady++;
+						allPlayersReady = checkIfAllPlayersReady();
+					}
+
+					if (streamFromPlayer3.readInt() == 1) {
+						playerNumberReady++;
+						allPlayersReady = checkIfAllPlayersReady();
+					}
+
+					if (streamFromPlayer4.readInt() == 1) {
+						playerNumberReady++;
+						allPlayersReady = checkIfAllPlayersReady();
 					}
 				}
-
-				if (streamFromPlayer2.readInt() == 1) {
-					playerNumberReady++;
-					allPlayersReady = checkIfAllPlayersReady();
-					if (allPlayersReady != true) {
-						streamToPlayer2.writeUTF(waiting);
-					} else { // if it returns true it sends out a 'lets go' message
-						streamToPlayer1.writeUTF(letsGo);
-						streamToPlayer2.writeUTF(letsGo);
-					}
-				}
-
-				if (streamFromPlayer3.readInt() == 1) {
-					playerNumberReady++;
-					allPlayersReady = checkIfAllPlayersReady();
-					if (allPlayersReady != true) {
-						streamToPlayer3.writeUTF(waiting);
-					} else {
-						streamToPlayer1.writeUTF(letsGo);
-						streamToPlayer2.writeUTF(letsGo);
-						streamToPlayer3.writeUTF(letsGo);
-					}
-				}
-
-				if (streamFromPlayer4.readInt() == 1) {
-					playerNumberReady++;
-					allPlayersReady = checkIfAllPlayersReady();
-					if (allPlayersReady != true) {
-						streamToPlayer1.writeUTF(waiting);
-					} else {
-						streamToPlayer1.writeUTF(letsGo);
-						streamToPlayer2.writeUTF(letsGo);
-						streamToPlayer3.writeUTF(letsGo);
-						streamToPlayer4.writeUTF(waiting);
-						streamToPlayer4.writeUTF(letsGo);
-					}
-				}
-
 				// Send a boolean to the client so that they stay inside a Game while loop
 				streamToPlayer1.writeBoolean(true);
 				streamToPlayer2.writeBoolean(true);

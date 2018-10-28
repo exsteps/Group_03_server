@@ -1,5 +1,5 @@
 package game;
-import java.io.BufferedReader;
+//import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -14,17 +14,9 @@ import java.util.concurrent.Semaphore;
 
 import main.MainServer;
 
-public class BoardGameClient implements Serializable {
-	
-	private int playerCount;
+public class BoardGameClient extends VariableClass implements Serializable {
 	private static final long serialVersionUID = -6224L;
-	public String name = "User";
-	private transient Socket socket;
-	static DataInputStream in;
-	static DataOutputStream out;
-	public transient Scanner input = new Scanner(System.in);	
-	public boolean gameStarted;
-	public boolean correctInput = false;
+
 
 	public static void main(String[] args) {
 
@@ -54,7 +46,7 @@ public class BoardGameClient implements Serializable {
 //		objectOutputStream.writeObject(this);
 		System.out.println("You have connected to the Lobby");
 		System.out.println("Please wait for more players... Missing " + objectInputStream.readInt() + " players");
-		BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
+//		BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
 
 		System.out.println(objectInputStream.readUTF());
 		System.out.println(objectInputStream.readUTF());
@@ -62,16 +54,20 @@ public class BoardGameClient implements Serializable {
 		
 		int ready = input.nextInt();
 		objectOutputStream.writeInt(ready);
-		
-		System.out.println(objectInputStream.readUTF());
-		System.out.println(objectInputStream.readUTF());
+		System.out.println(waiting);
+
 		
 		// Receive a bool so the client stays inside the game while loop
 		gameStarted = objectInputStream.readBoolean();
 		
+		// If gameStarted is true, print out 'Lets GO' message once
+		if(gameStarted == true) {
+			System.out.println(letsGo);
+		}
 		
 		// IF THE GAME HAS STARTED
 		while(gameStarted) {
+
 		// Receive instructions to roll the dice
 		System.out.println(objectInputStream.readUTF());
 

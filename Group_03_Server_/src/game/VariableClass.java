@@ -2,10 +2,13 @@ package game;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class VariableClass {
+// -------------- VARIABLES FOR LOBBY CLASS ----------------
 	private static final long serialVersionUID = -21654L;
 	public static final int PORT = 4445;
 	public static final int MAX_USERS = 4;
@@ -45,4 +48,14 @@ public class VariableClass {
 	public static String winningPlayer;
 	public String gameHasEnded = "The game has ended. ";
 	public String pressToRollDice = "Press 'r' to roll the dice. The dice will be rolled when all players have pressed 'r'.";
+
+// --------------------- VARIABLES FOR CLIENT CLASS ------------	
+	
+	public transient Socket socket;
+	public transient Scanner input = new Scanner(System.in);	
+	public boolean gameStarted;
+	public boolean correctInput = false;
+	
+	
+
 }
