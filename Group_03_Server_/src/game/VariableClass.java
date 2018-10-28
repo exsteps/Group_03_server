@@ -44,4 +44,5 @@ public class VariableClass {
 	public boolean ifLastPlayerHasMax = false;
 	public static String winningPlayer;
 	public String gameHasEnded = "The game has ended. ";
+	public String pressToRollDice = "Press 'r' to roll the dice. The dice will be rolled when all players have pressed 'r'.";
 }

@@ -312,10 +312,10 @@ public class Lobby extends VariableClass implements Serializable {
 
 		// function that runs the game
 		public void rollTheDice() throws IOException, InterruptedException {
-			streamToPlayer1.writeUTF("Press 'r' to roll the dice. The dice will be rolled when all players have pressed 'r'.");
-			streamToPlayer2.writeUTF("Press 'r' to roll the dice. The dice will be rolled when all players have pressed 'r'.");
-			streamToPlayer3.writeUTF("Press 'r' to roll the dice. The dice will be rolled when all players have pressed 'r'.");
-			streamToPlayer4.writeUTF("Press 'r' to roll the dice. The dice will be rolled when all players have pressed 'r'.");
+			streamToPlayer1.writeUTF(pressToRollDice);
+			streamToPlayer2.writeUTF(pressToRollDice);
+			streamToPlayer3.writeUTF(pressToRollDice);
+			streamToPlayer4.writeUTF(pressToRollDice);
 
 			// READ INPUT FROM USER AND SEE IF IT IS 'r'
 			if (streamFromPlayer1.readChar() == roll && streamFromPlayer2.readChar() == roll
