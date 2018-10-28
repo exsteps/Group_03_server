@@ -18,7 +18,7 @@ import java.util.concurrent.Semaphore;
 import main.MainServer;
 
 /**
- * The Class Server.
+ * The Class Lobby.
  */
 public class Lobby extends VariableClass implements Serializable {
 
